@@ -20,12 +20,12 @@ import org.apache.log4j.Logger;
  */
 public class FahrenheitToCelsius {
 
+	private static final Logger log = Logger.getLogger(FahrenheitToCelsius.class);
+	
 	/**
 	 * * static method for value converting
 	 * */
 	public static float convertFahrenheitToCelsius(String number) throws SOAPException {
-	
-	private static final Logger log = Logger.getLogger(CelsiusToFahrenheit.class);
 	
 	float result = 0;
    
