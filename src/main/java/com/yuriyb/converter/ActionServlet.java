@@ -54,14 +54,14 @@ public class ActionServlet extends HttpServlet {
 		try {
 			  if (number!=null) result = FahrenheitToCelsius.convertFahrenheitToCelsius(number);
 		} catch (SOAPException e) {
-			log.error("The SOAPException in doPost method during conversion to Celsius : "+e.getMessage());	
+			log.error("The SOAPException  has appeared in doPost method during conversion to Celsius : "+e.getMessage());	
 		}	  
 	  }
 	  else {
 		try {
 			  if (number!=null) result = CelsiusToFahrenheit.convertCelsiusToFahrenheit(number);
 		} catch (SOAPException e) {
-			log.error("The SOAPException in doPost method during conversion to Fahrenheits : "+e.getMessage());			
+			log.error("The SOAPException  has appeared in doPost method during conversion to Fahrenheits : "+e.getMessage());			
 		}  
 	  }
 		   
@@ -72,7 +72,7 @@ public class ActionServlet extends HttpServlet {
     	json = new JSONObject();  
 		json.put("result", Float.toString(result));
 	  } catch (JSONException e) {
-		  log.error("JSONException during conversion JSON : "+e.getMessage());
+		  log.error("The JSONException has appeared during conversion JSON : "+e.getMessage());
 	  }
       
       response.getWriter().print(json);
