@@ -53,10 +53,12 @@ public class CelsiusToFahrenheit {
         
         connection.close();
         result = Float.parseFloat(response.getSOAPPart().getEnvelope().getTextContent());
-
-    } catch (SOAPException ex) {
+        
+        } catch (SOAPException ex) {
     	log.error("The SOAPException has appeared in convertCelsiusToFahrenheit method : "+ex.getMessage());
-    }
+    	}
+    
     return result;
+    
     }
 }
