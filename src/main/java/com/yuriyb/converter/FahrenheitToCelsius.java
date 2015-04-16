@@ -10,18 +10,22 @@ import javax.xml.soap.SOAPEnvelope;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 
+import org.apache.log4j.Logger;
+
 /**
  * FahrenheitToCelsius class. It provides the ability to convert a temperature from Fahrenheit to Celsius. 
  * It contains one static method for converting. 
  * @version 1.1
- * @author  yuriy2204
+ * @author  Yuriy B.
  */
 public class FahrenheitToCelsius {
 
-/**
-* static method for value converting
-*/
-public static float convertFahrenheitToCelsius(String number) throws SOAPException {
+	/**
+	 * * static method for value converting
+	 * */
+	public static float convertFahrenheitToCelsius(String number) throws SOAPException {
+	
+	private static final Logger log = Logger.getLogger(CelsiusToFahrenheit.class);
 	
 	float result = 0;
    
@@ -50,10 +54,12 @@ public static float convertFahrenheitToCelsius(String number) throws SOAPExcepti
         connection.close();
         
         result = Float.parseFloat(response.getSOAPPart().getEnvelope().getTextContent());
+        
        } catch (SOAPException ex) {
-        ex.printStackTrace();
+    	   log.error("The SOAPException has appeared in the method convertFahrenheitToCelsius(String number) " +ex.getMessage());
        }
+	
 	return result;
-}
-
+	
+	}
 }
