@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.soap.SOAPException;
 
+import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,6 +21,8 @@ import org.json.JSONObject;
 public class ActionServlet extends HttpServlet {
 	
  private static final long serialVersionUID = 1L;
+ 
+ private static final Logger log = Logger.getLogger(ActionServlet.class);
  
 /**
 * constructor of ActionServlet
@@ -51,16 +54,14 @@ public class ActionServlet extends HttpServlet {
 		try {
 			  if (number!=null) result = FahrenheitToCelsius.convertFahrenheitToCelsius(number);
 		} catch (SOAPException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("The SOAPException in doPost method during conversion to Celsius : "+e.getMessage());	
 		}	  
 	  }
 	  else {
 		try {
 			  if (number!=null) result = CelsiusToFahrenheit.convertCelsiusToFahrenheit(number);
 		} catch (SOAPException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			log.error("The SOAPException in doPost method during conversion to Fahrenheits : "+e.getMessage());			
 		}  
 	  }
 		   
@@ -71,10 +72,9 @@ public class ActionServlet extends HttpServlet {
     	json = new JSONObject();  
 		json.put("result", Float.toString(result));
 	  } catch (JSONException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	  }	 
+		  log.error("JSONException during conversion JSON : "+e.getMessage());
+	  }
       
       response.getWriter().print(json);
-}    
+ }    
 }
